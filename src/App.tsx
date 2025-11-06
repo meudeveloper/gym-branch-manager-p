@@ -4,11 +4,18 @@ import { MembersSection } from '@/components/MembersSection'
 import { AttendanceSection } from '@/components/AttendanceSection'
 import { ReportsSection } from '@/components/ReportsSection'
 import { BranchesSection } from '@/components/BranchesSection'
-import { Users, DoorOpen, ChartBar, Buildings } from '@phosphor-icons/react'
+import { Users, DoorOpen, ChartBar, Buildings, UserPlus } from '@phosphor-icons/react'
 import { Toaster } from '@/components/ui/sonner'
+import { QuickRegistration } from '@/components/QuickRegistration'
+import { Button } from '@/components/ui/button'
 
 function App() {
   const [activeTab, setActiveTab] = useState('members')
+
+  // Check if we're on the quick registration page
+  if (window.location.pathname === '/quick-register') {
+    return <QuickRegistration />
+  }
 
   return (
     <>
@@ -23,6 +30,14 @@ function App() {
                 <h1 className="text-2xl font-bold">Gym Manager</h1>
                 <p className="text-sm text-muted-foreground">Multi-Branch Attendance System</p>
               </div>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="ml-auto md:hidden"
+                onClick={() => window.location.href = '/quick-register'}
+              >
+                <UserPlus className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </header>
